@@ -1,0 +1,31 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+    <body>
+
+        <h3 class="text-center mb-4">
+            <% if (currentCategory) { %>
+                <%= currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1) %> Listings
+            <% } else { %>
+                All Listings
+            <% } %>
+        </h3>
+        <div class="row justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <% for (let listing of all_listings) { %>
+                <div class="col d-flex justify-content-center">
+                    <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark w-100">
+                        <div class="card h-100 shadow-sm">
+                            <% const imageUrl = listing.image && listing.image.url ? listing.image.url : 'https://img.magnific.com/free-vector/glitch-error-404-page_23-2148105404.jpg?semt=ais_hybrid&w=740&q=80'; %>
+                            <img src="<%= imageUrl %>" class="card-img-top" alt="listing_image" style="height:18rem" />
+                            <div class="card-body">
+                                <div class="card-text mb-0">
+                                    <strong><%= listing.title %></strong><br />
+                                    <span class="price-display" data-base-price="<%= listing.price %>">₹<%= listing.price %>/night</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+
+    </body>

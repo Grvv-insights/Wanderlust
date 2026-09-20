@@ -1,0 +1,108 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+<div class="d-flex justify-content-center align-items-center min-vh-75">
+  <div class="w-100" style="max-width: 700px">
+    <h2 class="text-center mb-4">Create New Listing</h2>
+    <form action="/listings" method="post" enctype="multipart/form-data" class="mx-auto needs-validation" novalidate >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input
+          id="title"
+          name="listing[title]"
+          type="text"
+          class="form-control"
+          required
+          placeholder="Add a Catchy Title"
+          />
+          <div class="valid-feedback">Title looks good</div>
+          <div class="invalid-feedback">Fill the Title</div>
+        </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea
+          id="description"
+          name="listing[description]"
+          class="form-control"
+          rows="2"
+          required
+          placeholder="Describe your place in words"
+          ></textarea>
+          <div class="valid-feedback">Description looks good</div>
+        <div class="invalid-feedback">Fill the Description</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload Image:</label>
+        <input
+          id="image"
+          name="listing[image]"
+          type="file"
+          class="form-control"
+        />
+      </div>
+
+      <div class="mb-3">
+          <label for="category" class="form-label">Category:</label>
+          <select id="category" name="listing[category]" class="form-control" required>
+              <option value="">Select a category</option>
+              <option value="trending">Trending</option>
+              <option value="rooms">Rooms</option>
+              <option value="iconic-cities">Iconic Cities</option>
+              <option value="mountains">Mountains</option>
+              <option value="castles">Castles</option>
+              <option value="pools">Amazing Pools</option>
+              <option value="camping">Camping</option>
+              <option value="farms">Farms</option>
+              <option value="arctic">Arctic</option>
+              <option value="domes">Domes</option>
+              <option value="boats">Boats</option>
+          </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">Price:</label>
+        <input
+          id="price"
+          name="listing[price]"
+          class="form-control"
+          type="number"
+          required
+          placeholder="1500"
+          />
+          <div class="invalid-feedback">Enter in digits</div>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input
+          id="location"
+          name="listing[location]"
+          type="text"
+          class="form-control"
+          required
+          placeholder="Jayanagar, Bangaluru"
+          />
+          <div class="valid-feedback">Perfect Location</div>
+        <div class="invalid-feedback">Fill the location</div>
+      </div>
+      <div class="mb-3">
+        <label for="country" class="form-label">Country:</label>
+        <input
+          id="country"
+          name="listing[country]"
+          type="text"
+          class="form-control"
+          required
+          placeholder="India"
+          />
+          <div class="invalid-feedback">Fill the Country</div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn text-white w-100"
+        style="background-color: #ff5a5f; border-color: #ff5a5f"
+      >
+        Create
+      </button>
+    </form>
+  </div>
+</div>

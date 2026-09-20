@@ -1,0 +1,351 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-brands fa-airbnb"></i></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .navbar {
+    width: 100%;
+  }
+
+  .navbar > .container-fluid {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .navbar-collapse {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  #filters-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0 0.5rem;
+    position: relative;
+  }
+
+  .filters-arrow {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    min-width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .filters-arrow:hover {
+    background: #f5f5f5;
+  }
+
+  .filters-arrow.disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  #filters {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    align-items: center;
+    gap: 1.75rem;
+    margin: 0 0.5rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #filters::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .filter {
+    text-align: center;
+    opacity: 0.7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .filter i {
+    font-size: 1.1rem;
+  }
+
+  .filter:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .filter p {
+    font-size: 0.75rem;
+    margin: 0.25rem 0 0;
+  }
+
+  .navbar-auth {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .tax-info {
+    display: none;
+  }
+
+.tax-toggle {
+  border: 1.5px solid #ddd;
+  border-radius: 2rem;
+  height: 2.75rem;
+  padding: 0 1.1rem;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #484848;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tax-toggle:hover {
+  border-color: #222;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.tax-toggle.active {
+  background-color: #222;
+  color: white;
+  border-color: #222;
+}
+
+.add-listing-btn {
+  border: 1.5px solid #222;
+  border-radius: 2rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #222;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.add-listing-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.btn-red {
+  background-color: #ff385c;
+  color: white;
+  border-radius: 2rem;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.btn-red:hover {
+  background-color: #e31c5f;
+  color: white;
+}
+
+  /* Prevent buttons/links from forcing navbar wider */
+  .navbar-auth .nav-link {
+    white-space: nowrap;
+  }
+
+  /* Smaller desktop/tablet screens */
+  @media (max-width: 1200px) {
+    #filters {
+      gap: 1.25rem;
+    }
+
+    .navbar-auth {
+      gap: 0.5rem;
+    }
+
+    .navbar-auth > .nav-link:first-child {
+      display: none;
+    }
+  }
+</style>
+
+      <!-- Category Filters Bar with arrows -->
+      <div id="filters-wrapper">
+        <div class="filters-arrow disabled" id="filters-left">
+          <i class="fa-solid fa-chevron-left"></i>
+        </div>
+
+      <div id="filters">
+        <a href="/listings?category=trending" class="filter">
+          <div><i class="fa-solid fa-fire"></i></div>
+          <p>Trending</p>
+        </a>
+        <a href="/listings?category=rooms" class="filter">
+          <div><i class="fa-solid fa-bed"></i></div>
+          <p>Rooms</p>
+        </a>
+        <a href="/listings?category=iconic-cities" class="filter">
+          <div><i class="fa-solid fa-mountain-city"></i></div>
+          <p>Iconic Cities</p>
+        </a>
+        <a href="/listings?category=mountains" class="filter">
+          <div><i class="fa-solid fa-mountain"></i></div>
+          <p>Mountains</p>
+        </a>
+        <a href="/listings?category=castles" class="filter">
+          <div><i class="fa-brands fa-fort-awesome"></i></div>
+          <p>Castles</p>
+        </a>
+        <a href="/listings?category=pools" class="filter">
+          <div><i class="fa-solid fa-person-swimming"></i></div>
+          <p>Amazing Pools</p>
+        </a>
+        <a href="/listings?category=camping" class="filter">
+          <div><i class="fa-solid fa-campground"></i></div>
+          <p>Camping</p>
+        </a>
+        <a href="/listings?category=farms" class="filter">
+          <div><i class="fa-solid fa-cow"></i></div>
+          <p>Farms</p>
+        </a>
+        <a href="/listings?category=arctic" class="filter">
+          <div><i class="fa-regular fa-snowflake"></i></div>
+          <p>Arctic</p>
+        </a>
+        <a href="/listings?category=domes" class="filter">
+          <div><i class="fa-solid fa-igloo"></i></div>
+          <p>Domes</p>
+        </a>
+        <a href="/listings?category=boats" class="filter">
+          <div><i class="fa-solid fa-ship"></i></div>
+          <p>Boats</p>
+        </a>
+      </div>
+
+        <div class="filters-arrow" id="filters-right">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+
+      <div class="tax-toggle" id="taxToggle">
+        <span id="taxToggleText">Display total price</span>
+      </div>
+
+      <div class="navbar-auth d-flex align-items-center">
+        <a class="add-listing-btn" href="/listings/new">Airbnb your home</a>
+        <% if(!currUser){ %>
+          <a class="nav-link btn btn-red me-2" href="/signup">Signup</a>
+          <a class="nav-link btn btn-red me-2" href="/login">Login</a>
+        <%}%>
+        <% if(currUser){ %>
+          <a class="nav-link btn btn-red" href="/logout">Logout</a>
+        <%}%>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const filters = document.getElementById("filters");
+    const leftArrow = document.getElementById("filters-left");
+    const rightArrow = document.getElementById("filters-right");
+    const scrollAmount = 200; // px moved per click
+
+    function updateArrows() {
+      leftArrow.classList.toggle("disabled", filters.scrollLeft <= 0);
+      rightArrow.classList.toggle(
+        "disabled",
+        filters.scrollLeft + filters.clientWidth >= filters.scrollWidth - 1
+      );
+    }
+
+    leftArrow.addEventListener("click", () => {
+      filters.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+
+    rightArrow.addEventListener("click", () => {
+      filters.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+
+    filters.addEventListener("scroll", updateArrows);
+    window.addEventListener("resize", updateArrows);
+    updateArrows(); // set initial state
+  });
+const taxToggle = document.getElementById("taxToggle");
+let showTotalPrice = localStorage.getItem("showTotalPrice") === "true";
+
+function updateAllPrices() {
+  document.querySelectorAll(".price-display").forEach((el) => {
+    const basePrice = parseFloat(el.dataset.basePrice);
+    if (showTotalPrice) {
+      const gst = Math.round(basePrice * 0.18);
+      const total = basePrice + gst;
+      el.textContent = `₹${basePrice.toLocaleString()} + 18% GST = ₹${total.toLocaleString()}/night`;
+    } else {
+      el.textContent = `₹${basePrice.toLocaleString()}/night`;
+    }
+  });
+  taxToggle.classList.toggle("active", showTotalPrice);
+}
+
+taxToggle.addEventListener("click", () => {
+  showTotalPrice = !showTotalPrice;
+  localStorage.setItem("showTotalPrice", showTotalPrice);
+  updateAllPrices();
+});
+
+updateAllPrices();
+</script>
