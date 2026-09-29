@@ -1,16 +1,24 @@
 const Listing = require("./models/listings.js");
 const Review=require("./models/reviews.js")
-const isLoggedIn = (message="You Must be logged in !") => {
-    return(req,res,next)=>{
-        if (!req.isAuthenticated()) {
-            if (req.method === "GET") {
-              req.session.redirectUrl = req.originalUrl;
-            }
-            req.flash("error",message);
-            return res.redirect("/login");
-        }
+// middleware.js
+const isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    // Save original URL to redirect back after login
+    req.session.redirectUrl = req.originalUrl;
+    
+    // Save review form data if user tried to post a review while logged out
+    if (req.body && req.body.review) {
+      req.session.pendingReview = {
+        data: req.body.review,
+        listingId: req.params.id
+      };
+    }
+
+    req.flash("error", "You must be logged in to leave a review!");
+    return res.redirect("/login");
+  }
   next();
-}};
+};
 
 const saveRedirectUrl = (req, res, next) => {
     res.locals.redirectUrl=req.session.redirectUrl;
