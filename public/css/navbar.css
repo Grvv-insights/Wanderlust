@@ -12,54 +12,40 @@ body {
   width: 100%;
   background-color: #ffffff;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
 }
 
 .navbar-brand {
   color: #ff385c;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  transition: color 0.2s ease;
+  text-decoration: none;
 }
 
-.navbar-brand:hover {
-  color: #e31c5f;
-}
-
-/* Category Filters Container */
 #filters-wrapper {
   display: flex;
   align-items: center;
-  flex: 1 1 auto;
-  min-width: 0;
-  margin: 0.5rem 0;
   position: relative;
+  overflow: hidden;
 }
 
 .filters-arrow {
   background: white;
   border: 1px solid #ddd;
   border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  min-width: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  min-width: 1.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 2;
   flex-shrink: 0;
-  transition: all 0.2s ease;
-}
-
-.filters-arrow:hover {
-  background: #f5f5f5;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 .filters-arrow.disabled {
-  opacity: 0.3;
-  cursor: default;
+  opacity: 0.2;
   pointer-events: none;
 }
 
@@ -68,21 +54,15 @@ body {
   flex-wrap: nowrap;
   overflow-x: auto;
   align-items: center;
-  gap: 1.5rem;
-  margin: 0 0.5rem;
-  flex: 1 1 auto;
-  min-width: 0;
+  gap: 1.25rem;
+  margin: 0 0.25rem;
   scroll-behavior: smooth;
-
-  /* Hide scrollbar */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 #filters::-webkit-scrollbar {
   display: none;
-  width: 0;
-  height: 0;
 }
 
 .filter {
@@ -95,44 +75,30 @@ body {
   flex-shrink: 0;
   text-decoration: none;
   color: inherit;
-  transition: opacity 0.2s ease;
 }
 
 .filter i {
-  font-size: 1.1rem;
-}
-
-.filter:hover {
-  opacity: 1;
-  cursor: pointer;
+  font-size: 1rem;
 }
 
 .filter p {
-  font-size: 0.75rem;
-  margin: 0.25rem 0 0;
+  font-size: 0.7rem;
+  margin: 0.2rem 0 0;
 }
 
-/* Tax Toggle */
 .tax-toggle {
   border: 1.5px solid #ddd;
   border-radius: 2rem;
-  height: 2.5rem;
-  padding: 0 1rem;
+  height: 2.2rem;
+  padding: 0 0.75rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: #484848;
   cursor: pointer;
-  transition: all 0.2s ease;
   white-space: nowrap;
   flex-shrink: 0;
-}
-
-.tax-toggle:hover {
-  border-color: #222;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .tax-toggle.active {
@@ -141,91 +107,43 @@ body {
   border-color: #222;
 }
 
-/* Auth Buttons */
 .navbar-auth {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
   white-space: nowrap;
 }
 
 .add-listing-btn {
   border: 1.5px solid #222;
   border-radius: 2rem;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #222;
   text-decoration: none;
   white-space: nowrap;
-  transition: all 0.2s ease;
-  text-align: center;
-}
-
-.add-listing-btn:hover {
-  background-color: #f5f5f5;
-  color: #000;
 }
 
 .btn-red {
   background-color: #ff385c;
   color: white !important;
   border-radius: 2rem;
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.75rem;
   font-weight: 600;
-  font-size: 0.85rem;
-  transition: background-color 0.2s ease;
-  text-align: center;
-}
-
-.btn-red:hover {
-  background-color: #e31c5f;
-  color: white !important;
+  font-size: 0.8rem;
 }
 
 .user-badge {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #333;
   background-color: #f0f0f0;
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.65rem;
   border-radius: 2rem;
 }
 
-/* ========================================================= */
-/* Responsive Media Queries                                   */
-/* ========================================================= */
-
-@media (max-width: 991.98px) {
-  /* Stack elements inside mobile drawer menu cleanly */
-  .navbar-collapse {
-    padding: 1rem 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
-  #filters-wrapper {
-    width: 100%;
-    margin: 0.5rem 0;
-  }
-
+@media (max-width: 576px) {
   .tax-toggle {
-    width: 100%;
-    margin-left: 0 !important;
-  }
-
-  .navbar-auth {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-
-  .add-listing-btn,
-  .btn-red {
-    width: 100%;
-    display: block;
+    display: none; /* Hide tax toggle on small mobile screens to save inline space */
   }
 }
