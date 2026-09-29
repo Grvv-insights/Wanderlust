@@ -1,92 +1,101 @@
 <!-- views/includes/navbar.ejs -->
-<nav class="navbar border-bottom sticky-top">
-  <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap gap-2">
+<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top p-0">
+  <div class="container-fluid d-flex flex-column p-0">
     
-    <!-- Brand Logo -->
-    <a class="navbar-brand d-flex align-items-center gap-2 flex-shrink-0 me-2" href="/listings">
-      <i class="fa-regular fa-compass fa-lg"></i>
-      <span class="d-none d-sm-inline">Wanderlust</span>
-    </a>
-
-    <!-- Category Filters Bar -->
-    <div id="filters-wrapper" class="flex-grow-1 min-vw-0">
-      <div class="filters-arrow disabled" id="filters-left">
-        <i class="fa-solid fa-chevron-left"></i>
-      </div>
-
-      <div id="filters">
-        <a href="/listings?category=trending" class="filter">
-          <div><i class="fa-solid fa-fire"></i></div>
-          <p>Trending</p>
-        </a>
-        <a href="/listings?category=rooms" class="filter">
-          <div><i class="fa-solid fa-bed"></i></div>
-          <p>Rooms</p>
-        </a>
-        <a href="/listings?category=iconic-cities" class="filter">
-          <div><i class="fa-solid fa-mountain-city"></i></div>
-          <p>Iconic Cities</p>
-        </a>
-        <a href="/listings?category=mountains" class="filter">
-          <div><i class="fa-solid fa-mountain"></i></div>
-          <p>Mountains</p>
-        </a>
-        <a href="/listings?category=castles" class="filter">
-          <div><i class="fa-brands fa-fort-awesome"></i></div>
-          <p>Castles</p>
-        </a>
-        <a href="/listings?category=pools" class="filter">
-          <div><i class="fa-solid fa-person-swimming"></i></div>
-          <p>Pools</p>
-        </a>
-        <a href="/listings?category=camping" class="filter">
-          <div><i class="fa-solid fa-campground"></i></div>
-          <p>Camping</p>
-        </a>
-        <a href="/listings?category=farms" class="filter">
-          <div><i class="fa-solid fa-cow"></i></div>
-          <p>Farms</p>
-        </a>
-        <a href="/listings?category=arctic" class="filter">
-          <div><i class="fa-regular fa-snowflake"></i></div>
-          <p>Arctic</p>
-        </a>
-        <a href="/listings?category=domes" class="filter">
-          <div><i class="fa-solid fa-igloo"></i></div>
-          <p>Domes</p>
-        </a>
-        <a href="/listings?category=boats" class="filter">
-          <div><i class="fa-solid fa-ship"></i></div>
-          <p>Boats</p>
-        </a>
-      </div>
-
-      <div class="filters-arrow" id="filters-right">
-        <i class="fa-solid fa-chevron-right"></i>
-      </div>
-    </div>
-
-    <!-- GST Price Toggle -->
-    <div class="tax-toggle ms-1 me-1" id="taxToggle">
-      <span id="taxToggleText">Display total price</span>
-    </div>
-
-    <!-- Auth & Add Listing Actions -->
-    <div class="navbar-auth flex-shrink-0 d-flex align-items-center gap-2">
-      <a class="add-listing-btn" href="/listings/new">
-        <span class="d-none d-md-inline">Wanderlust your home</span>
-        <span class="d-inline d-md-none"><i class="fa-solid fa-plus"></i></span>
+    <!-- TOP ROW: Logo + Auth / Add Listing Controls -->
+    <div class="d-flex align-items-center justify-content-between w-100 px-3 py-2 border-bottom">
+      
+      <!-- Brand Logo -->
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/listings">
+        <i class="fa-regular fa-compass fa-lg text-danger"></i>
+        <span class="fw-bold fs-5 text-dark">Wanderlust</span>
       </a>
 
-      <% if (!currUser) { %>
-        <a class="nav-link btn btn-red" href="/login">Login</a>
-        <a class="nav-link btn btn-red d-none d-sm-inline-block" href="/signup">Signup</a>
-      <% } else { %>
-        <span class="user-badge d-none d-lg-inline-block">
-          <i class="fa-solid fa-user me-1"></i><%= currUser.username %>
-        </span>
-        <a class="nav-link btn btn-red" href="/logout">Logout</a>
-      <% } %>
+      <!-- Right Side Controls -->
+      <div class="d-flex align-items-center gap-2">
+        <a class="add-listing-btn" href="/listings/new">
+          <span class="d-none d-sm-inline">Wanderlust your home</span>
+          <span class="d-inline d-sm-none"><i class="fa-solid fa-plus"></i></span>
+        </a>
+
+        <% if (!currUser) { %>
+          <a class="btn btn-red btn-sm" href="/login">Login</a>
+          <a class="btn btn-red btn-sm d-none d-sm-inline-block" href="/signup">Signup</a>
+        <% } else { %>
+          <span class="user-badge d-none d-md-inline-block">
+            <i class="fa-solid fa-user me-1"></i><%= currUser.username %>
+          </span>
+          <a class="btn btn-red btn-sm" href="/logout">Logout</a>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW: Category Filters + GST Toggle (ALWAYS VISIBLE EVERYWHERE) -->
+    <div class="d-flex align-items-center justify-content-between w-100 px-3 py-2 bg-white" id="category-bar">
+      
+      <!-- Category Filters Wrapper -->
+      <div id="filters-wrapper" class="flex-grow-1 min-vw-0 me-2">
+        <div class="filters-arrow disabled" id="filters-left">
+          <i class="fa-solid fa-chevron-left"></i>
+        </div>
+
+        <div id="filters">
+          <a href="/listings?category=trending" class="filter">
+            <div><i class="fa-solid fa-fire"></i></div>
+            <p>Trending</p>
+          </a>
+          <a href="/listings?category=rooms" class="filter">
+            <div><i class="fa-solid fa-bed"></i></div>
+            <p>Rooms</p>
+          </a>
+          <a href="/listings?category=iconic-cities" class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i></div>
+            <p>Iconic Cities</p>
+          </a>
+          <a href="/listings?category=mountains" class="filter">
+            <div><i class="fa-solid fa-mountain"></i></div>
+            <p>Mountains</p>
+          </a>
+          <a href="/listings?category=castles" class="filter">
+            <div><i class="fa-brands fa-fort-awesome"></i></div>
+            <p>Castles</p>
+          </a>
+          <a href="/listings?category=pools" class="filter">
+            <div><i class="fa-solid fa-person-swimming"></i></div>
+            <p>Pools</p>
+          </a>
+          <a href="/listings?category=camping" class="filter">
+            <div><i class="fa-solid fa-campground"></i></div>
+            <p>Camping</p>
+          </a>
+          <a href="/listings?category=farms" class="filter">
+            <div><i class="fa-solid fa-cow"></i></div>
+            <p>Farms</p>
+          </a>
+          <a href="/listings?category=arctic" class="filter">
+            <div><i class="fa-regular fa-snowflake"></i></div>
+            <p>Arctic</p>
+          </a>
+          <a href="/listings?category=domes" class="filter">
+            <div><i class="fa-solid fa-igloo"></i></div>
+            <p>Domes</p>
+          </a>
+          <a href="/listings?category=boats" class="filter">
+            <div><i class="fa-solid fa-ship"></i></div>
+            <p>Boats</p>
+          </a>
+        </div>
+
+        <div class="filters-arrow" id="filters-right">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+
+      <!-- GST Tax Toggle -->
+      <div class="tax-toggle" id="taxToggle">
+        <span id="taxToggleText">Display total price</span>
+      </div>
+
     </div>
 
   </div>
