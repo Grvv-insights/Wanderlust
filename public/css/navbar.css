@@ -1,182 +1,126 @@
-/* public/css/navbar.css */
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
+/* Navigation Component */
 .navbar {
-  width: 100%;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  background-color: var(--color-surface, #1e293b);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
   z-index: 1000;
+  width: 100%;
 }
 
-.navbar-brand {
-  text-decoration: none;
-}
-
-/* Category Filters Bar */
-#category-bar {
-  overflow: hidden;
-}
-
-#filters-wrapper {
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
-  position: relative;
-  overflow: hidden;
+  justify-content: space-between;
 }
 
-.filters-arrow {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  width: 1.8rem;
-  height: 1.8rem;
-  min-width: 1.8rem;
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.logo-accent {
+  color: var(--color-primary, #38bdf8);
+}
+
+.nav-menu {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 2;
-  flex-shrink: 0;
-  transition: all 0.2s ease;
+  gap: 2rem;
 }
 
-.filters-arrow:hover {
-  background: #f5f5f5;
-}
-
-.filters-arrow.disabled {
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-#filters {
+.nav-links {
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
   align-items: center;
   gap: 1.5rem;
-  margin: 0 0.5rem;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
-#filters::-webkit-scrollbar {
+.nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-muted, #94a3b8);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--color-muted, #94a3b8);
+  color: #ffffff;
+}
+
+.btn-outline:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile Navigation Toggle (Pure CSS) */
+.nav-toggle {
   display: none;
 }
 
-.filter {
-  text-align: center;
-  opacity: 0.65;
-  display: flex;
+.nav-hamburger {
+  display: none;
   flex-direction: column;
-  align-items: center;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-decoration: none;
-  color: inherit;
-  transition: opacity 0.2s ease;
-}
-
-.filter i {
-  font-size: 1.1rem;
-}
-
-.filter:hover {
-  opacity: 1;
-}
-
-.filter p {
-  font-size: 0.72rem;
-  margin: 0.2rem 0 0;
-  font-weight: 500;
-}
-
-/* GST Tax Toggle */
-.tax-toggle {
-  border: 1.5px solid #ddd;
-  border-radius: 2rem;
-  height: 2.3rem;
-  padding: 0 0.85rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #484848;
+  gap: 5px;
   cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: all 0.2s ease;
 }
 
-.tax-toggle:hover {
-  border-color: #222;
+.nav-hamburger span {
+  width: 24px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.tax-toggle.active {
-  background-color: #222;
-  color: white;
-  border-color: #222;
-}
-
-/* Action Buttons */
-.add-listing-btn {
-  border: 1.5px solid #222;
-  border-radius: 2rem;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #222;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color 0.2s ease;
-}
-
-.add-listing-btn:hover {
-  background-color: #f5f5f5;
-  color: #000;
-}
-
-.btn-red {
-  background-color: #ff385c !important;
-  border-color: #ff385c !important;
-  color: white !important;
-  border-radius: 2rem !important;
-  padding: 0.35rem 0.85rem !important;
-  font-weight: 600 !important;
-  font-size: 0.82rem !important;
-  white-space: nowrap;
-}
-
-.btn-red:hover {
-  background-color: #e31c5f !important;
-}
-
-.user-badge {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #333;
-  background-color: #f0f0f0;
-  padding: 0.35rem 0.75rem;
-  border-radius: 2rem;
-}
-
-/* Responsive adjustments for mobile */
-@media (max-width: 576px) {
-  #filters {
-    gap: 1.1rem;
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: flex;
   }
-  
-  .tax-toggle {
-    font-size: 0.75rem;
-    padding: 0 0.6rem;
-    height: 2.1rem;
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-surface, #1e293b);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: none;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .nav-auth {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  /* Toggle drawer when checked */
+  .nav-toggle:checked ~ .nav-menu {
+    display: flex;
   }
 }

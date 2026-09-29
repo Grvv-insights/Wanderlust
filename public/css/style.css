@@ -113,3 +113,70 @@
     margin-left: 0 !important;
   }
 }
+
+/* ========================================================= */
+/* STRICT COMPACT TAX TOGGLE FIX FOR ALL SMALL SCREEN SIZES   */
+/* ========================================================= */
+
+/* Force wrapper to align right without expanding full-width */
+.tax-toggle-wrapper {
+  width: auto !important;
+  max-width: fit-content !important;
+  margin-left: auto !important; /* Forces alignment to the far right */
+  display: flex !important;
+  justify-content: flex-end !important;
+  flex-shrink: 0 !important;
+}
+
+/* Force tax toggle pill to remain compact and NEVER stretch */
+.tax-toggle {
+  width: auto !important; /* Overrides 100% stretch */
+  max-width: fit-content !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.35rem 0.85rem !important;
+  height: 2.2rem !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 2rem !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
+
+/* Prevent checkbox and text from overlapping */
+.tax-toggle .form-check-input {
+  width: 1.8rem !important;
+  height: 0.95rem !important;
+  margin: 0 0.5rem 0 0 !important;
+  float: none !important;
+  cursor: pointer !important;
+}
+
+.tax-toggle .form-check-label {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: #222222 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+}
+
+/* Mobile Alignment (Below 768px) */
+@media (max-width: 767.98px) {
+  .filters-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important; /* Keeps the toggle pinned to the right */
+    gap: 0.5rem !important;
+  }
+
+  #filters-wrapper {
+    width: 100% !important;
+  }
+
+  .tax-toggle-wrapper {
+    align-self: flex-end !important; /* Double locks it to the top-right / right side */
+  }
+}

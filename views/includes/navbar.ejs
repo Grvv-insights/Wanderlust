@@ -1,104 +1,34 @@
-<!-- views/includes/navbar.ejs -->
-<nav class="navbar bg-white border-bottom sticky-top p-0">
-  <div class="container-fluid d-flex flex-column p-0">
-    
-    <!-- TOP BAR: Logo & Auth Actions -->
-    <div class="nav-top-bar d-flex align-items-center justify-content-between w-100 px-3 py-2 border-bottom">
-      <a class="navbar-brand d-flex align-items-center gap-2 m-0" href="/listings">
-        <i class="fa-regular fa-compass fa-lg brand-icon"></i>
-        <span class="fw-bold fs-5 brand-title">Wanderlust</span>
-      </a>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">
+      <span class="logo-accent">App</span>Logo
+    </a>
 
-      <div class="navbar-auth d-flex align-items-center gap-1 gap-sm-2">
-        <a class="add-listing-btn" href="/listings/new">
-          <span class="d-none d-sm-inline">Wanderlust your home</span>
-          <span class="d-inline d-sm-none"><i class="fa-solid fa-plus"></i></span>
-        </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+    <label for="nav-toggle" class="nav-hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
 
-        <% if (!currUser) { %>
-          <a class="btn btn-red btn-sm" href="/login">Login</a>
-          <a class="btn btn-red btn-sm" href="/signup">Signup</a>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/explore" class="nav-link">Explore</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+      </ul>
+
+      <div class="nav-auth">
+        <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+          <a href="/profile" class="nav-link user-profile">
+            <span><%= currentUser.username %></span>
+          </a>
+          <a href="/logout" class="btn btn-outline">Log Out</a>
         <% } else { %>
-          <span class="user-badge d-none d-md-inline-block">
-            <i class="fa-solid fa-user me-1"></i><%= currUser.username %>
-          </span>
-          <a class="btn btn-red btn-sm" href="/logout">Logout</a>
+          <a href="/login" class="nav-link">Log In</a>
+          <a href="/register" class="btn btn-primary">Sign Up</a>
         <% } %>
       </div>
     </div>
-
-    <!-- BOTTOM SECTION: Filters Bar + GST Toggle -->
-    <div class="nav-filters-bar w-100 px-3 py-2 bg-white">
-      <div class="filters-container d-flex align-items-center justify-content-between">
-        
-        <!-- Category Filters Wrapper -->
-        <div id="filters-wrapper">
-          <div class="filters-arrow disabled" id="filters-left">
-            <i class="fa-solid fa-chevron-left"></i>
-          </div>
-
-          <div id="filters">
-            <a href="/listings?category=trending" class="filter">
-              <div><i class="fa-solid fa-fire"></i></div>
-              <p>Trending</p>
-            </a>
-            <a href="/listings?category=rooms" class="filter">
-              <div><i class="fa-solid fa-bed"></i></div>
-              <p>Rooms</p>
-            </a>
-            <a href="/listings?category=iconic-cities" class="filter">
-              <div><i class="fa-solid fa-mountain-city"></i></div>
-              <p>Iconic Cities</p>
-            </a>
-            <a href="/listings?category=mountains" class="filter">
-              <div><i class="fa-solid fa-mountain"></i></div>
-              <p>Mountains</p>
-            </a>
-            <a href="/listings?category=castles" class="filter">
-              <div><i class="fa-brands fa-fort-awesome"></i></div>
-              <p>Castles</p>
-            </a>
-            <a href="/listings?category=pools" class="filter">
-              <div><i class="fa-solid fa-person-swimming"></i></div>
-              <p>Pools</p>
-            </a>
-            <a href="/listings?category=camping" class="filter">
-              <div><i class="fa-solid fa-campground"></i></div>
-              <p>Camping</p>
-            </a>
-            <a href="/listings?category=farms" class="filter">
-              <div><i class="fa-solid fa-cow"></i></div>
-              <p>Farms</p>
-            </a>
-            <a href="/listings?category=arctic" class="filter">
-              <div><i class="fa-regular fa-snowflake"></i></div>
-              <p>Arctic</p>
-            </a>
-            <a href="/listings?category=domes" class="filter">
-              <div><i class="fa-solid fa-igloo"></i></div>
-              <p>Domes</p>
-            </a>
-            <a href="/listings?category=boats" class="filter">
-              <div><i class="fa-solid fa-ship"></i></div>
-              <p>Boats</p>
-            </a>
-          </div>
-
-          <div class="filters-arrow" id="filters-right">
-            <i class="fa-solid fa-chevron-right"></i>
-          </div>
-        </div>
-
-        <!-- GST Price Switch (Right Side in Desktop, Bottom Right in Mobile/Tablet) -->
-        <div class="tax-toggle-wrapper">
-          <div class="tax-toggle" id="taxToggle">
-            <input class="form-check-input" type="checkbox" role="switch" id="taxSwitch">
-            <label class="form-check-label" for="taxSwitch" id="taxToggleText">Display total price</label>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
   </div>
 </nav>
