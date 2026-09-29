@@ -103,6 +103,115 @@ body {
 
 /* REVIEW CARDS */
 
+/* Responsive layout */
+html,
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+}
+
+.card-img-top {
+  aspect-ratio: 4 / 3;
+  height: auto !important;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    flex-wrap: wrap;
+    padding: 0.75rem 0;
+  }
+
+  #filters-wrapper {
+    flex: 1 1 100%;
+    width: 100%;
+    margin: 0.75rem 0 0;
+    order: 3;
+  }
+
+  #filters {
+    gap: 1.25rem;
+  }
+
+  .tax-toggle {
+    margin: 0.75rem 0 0;
+    order: 4;
+  }
+
+  .navbar-auth {
+    margin: 0.75rem 0 0;
+    order: 5;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navbar {
+    height: auto;
+    min-height: 4rem;
+  }
+
+  .navbar > .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .navbar-auth {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .navbar-auth .add-listing-btn,
+  .navbar-auth .btn-red {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .navbar-auth .nav-link.me-2 {
+    margin-right: 0.5rem !important;
+  }
+
+  .tax-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filters-arrow {
+    width: 1.75rem;
+    height: 1.75rem;
+    min-width: 1.75rem;
+  }
+
+  .filter p {
+    font-size: 0.7rem;
+  }
+
+  .review-panel,
+  .review-section,
+  .comment-form-card {
+    width: 100%;
+  }
+
+  .review-section,
+  .comment-form-card {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .review-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #map {
+    height: 240px !important;
+  }
+}
+
 .review-panel {
   width: min(100%, 720px);
   max-width: 720px;

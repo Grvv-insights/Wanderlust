@@ -21,13 +21,19 @@ async function getCoordinates(location) {
 // ALL LISTINGS (home.ejs)
 module.exports.home = async (req, res) => {
   const { category } = req.query;
-  let allListings;
+  let filter = {};
 
-  if (category) {
-    allListings = await Listing.find({ category: category });
-  } else {
-    allListings = await Listing.find({});
+  // Only filter if category is passed AND is not empty
+  if (category && category.trim() !== "") {
+    filter.category = category;
   }
+
+  const allListings = await Listing.find(filter);
+
+  // Terminal Logging for Verification
+  console.log(
+    `[DEBUG] Category: "${category || "All"}" | Total Listings Found: ${allListings.length}`,
+  );
 
   res.render("listings/home.ejs", {
     all_listings: allListings,

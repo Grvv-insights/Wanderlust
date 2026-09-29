@@ -1,14 +1,16 @@
 <%- layout("/layouts/boilerplate.ejs") %>
 
-    <body>
+<body>
 
-        <h3 class="text-center mb-4">
-            <% if (currentCategory) { %>
-                <%= currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1) %> Listings
-            <% } else { %>
-                All Listings
-            <% } %>
-        </h3>
+    <h3 class="text-center mb-4">
+        <% if (currentCategory) { %>
+            <%= currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1) %> Listings
+        <% } else { %>
+            All Listings
+        <% } %>
+    </h3>
+
+    <% if (all_listings && all_listings.length > 0) { %>
         <div class="row justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             <% for (let listing of all_listings) { %>
                 <div class="col d-flex justify-content-center">
@@ -19,7 +21,7 @@
                             <div class="card-body">
                                 <div class="card-text mb-0">
                                     <strong><%= listing.title %></strong><br />
-                                    <span class="price-display" data-base-price="<%= listing.price %>">₹<%= listing.price %>/night</span>
+                                    <span class="price-display" data-base-price="<%= listing.price %>">₹<%= listing.price ? listing.price.toLocaleString("en-IN") : "0" %>/night</span>
                                 </div>
                             </div>
                         </div>
@@ -27,5 +29,11 @@
                 </div>
             <% } %>
         </div>
+    <% } else { %>
+        <div class="text-center my-5">
+            <h4>No listings available for "<%= currentCategory %>"</h4>
+            <a href="/listings" class="btn btn-outline-dark mt-2">View All Listings</a>
+        </div>
+    <% } %>
 
-    </body>
+</body>

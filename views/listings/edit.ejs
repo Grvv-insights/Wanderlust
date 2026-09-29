@@ -38,18 +38,42 @@
         <div class="invalid-feedback">Fill the Description</div>
       </div>
 
+      <!-- Optional File Upload during Edit -->
       <div class="mb-3">
-        <label for="image" class="form-label">Upload Image:</label>
+        <label for="image" class="form-label">Upload New Image (Optional):</label>
         <input
           id="image"
           name="listing[image]"
-          value="<%= list.image.url %>"
           type="file"
           class="form-control"
-          required
         />
-        <div class="valid-feedback">Image URL looks good</div>
-        <div class="invalid-feedback">Fill the Image URL</div>
+        <div class="valid-feedback">Image field looks good</div>
+      </div>
+
+      <!-- Category Dropdown Select -->
+      <div class="mb-3">
+        <label for="category" class="form-label">Category:</label>
+        <select
+          id="category"
+          name="listing[category]"
+          class="form-select"
+          required
+        >
+          <option value="" disabled>Select Category</option>
+          <option value="trending" <%= list.category === 'trending' ? 'selected' : '' %>>Trending</option>
+          <option value="rooms" <%= list.category === 'rooms' ? 'selected' : '' %>>Rooms</option>
+          <option value="iconic-cities" <%= list.category === 'iconic-cities' ? 'selected' : '' %>>Iconic Cities</option>
+          <option value="mountains" <%= list.category === 'mountains' ? 'selected' : '' %>>Mountains</option>
+          <option value="castles" <%= list.category === 'castles' ? 'selected' : '' %>>Castles</option>
+          <option value="pools" <%= list.category === 'pools' ? 'selected' : '' %>>Pools</option>
+          <option value="camping" <%= list.category === 'camping' ? 'selected' : '' %>>Camping</option>
+          <option value="farms" <%= list.category === 'farms' ? 'selected' : '' %>>Farms</option>
+          <option value="arctic" <%= list.category === 'arctic' ? 'selected' : '' %>>Arctic</option>
+          <option value="domes" <%= list.category === 'domes' ? 'selected' : '' %>>Domes</option>
+          <option value="boats" <%= list.category === 'boats' ? 'selected' : '' %>>Boats</option>
+        </select>
+        <div class="valid-feedback">Category selected</div>
+        <div class="invalid-feedback">Please select a category</div>
       </div>
 
       <div class="mb-3">

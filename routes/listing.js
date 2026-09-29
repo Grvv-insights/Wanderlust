@@ -13,6 +13,7 @@ const listingController=require("../controllers/listing.js")
 const multer= require("multer")
 const {storage}=require("../cloudconfig.js")
 const upload = multer({ storage });
+
 // MIDDLEWARES
 const validateListing = (req, res, next) => {
   if (!req.body || Object.keys(req.body).length === 0) {
