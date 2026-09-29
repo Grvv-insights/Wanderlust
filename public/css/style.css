@@ -1,134 +1,86 @@
-/* Filters & Tax Toggle Container Layout */
-.nav-filters-bar {
-  background-color: #ffffff;
-  padding: 0.5rem 1.5rem !important;
+/* ========================================================= */
+/* PERFECT PC & MOBILE NAVBAR FIX (OVERRIDE ALL)              */
+/* ========================================================= */
+
+/* 1. PC Layout: Align categories & compact toggle side-by-side */
+@media (min-width: 992px) {
+  .filters-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* Pulls toggle right next to categories */
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  #filters-wrapper {
+    flex: 0 1 auto !important; /* Stop stretching empty space */
+    max-width: fit-content !important;
+  }
+
+  .tax-toggle-wrapper {
+    margin-left: auto !important; /* Anchors compactly to the right */
+    flex-shrink: 0 !important;
+  }
 }
 
-.filters-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Keeps filters left-aligned and toggle right-aligned */
-  gap: 1.5rem;
-}
-
-/* Category Filters Wrapper */
-#filters-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  flex: 0 1 auto; /* Stops wrapper from stretching empty space */
-  max-width: 82%; /* Ensures categories stop right before the tax toggle */
-}
-
-#filters {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  align-items: center;
-  gap: 2rem; /* Clean, consistent spacing between icons */
-  margin: 0 0.5rem;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-#filters::-webkit-scrollbar {
-  display: none;
-}
-
-.filter {
-  text-align: center;
-  opacity: 0.65;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-decoration: none;
-  color: #374151;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-.filter:hover {
-  opacity: 1;
-  color: #000000;
-  border-bottom: 2px solid #000000;
-  padding-bottom: 0.2rem;
-}
-
-.filter i {
-  font-size: 1.1rem;
-}
-
-.filter p {
-  font-size: 0.72rem;
-  margin: 0.25rem 0 0;
-  font-weight: 500;
-}
-
-/* Compact, Sleek GST Tax Toggle Switch (Airbnb Style) */
-.tax-toggle-wrapper {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: flex-end;
-  margin-left: auto; /* Pulls toggle neatly toward categories without stretching */
-}
-
+/* 2. Compact, Perfectly Sized GST Toggle Box */
 .tax-toggle {
-  border: 1px solid #e5e7eb;
-  border-radius: 0.8rem;
-  padding: 0.5rem 0.85rem;
-  height: 2.4rem; /* Compact height */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  cursor: pointer;
+  border: 1px solid #d1d5db !important;
+  border-radius: 2rem !important;
+  padding: 0.25rem 0.75rem !important; /* Small padding */
+  height: 2.1rem !important; /* Fixed compact height */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #ffffff !important;
+  width: fit-content !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
 }
 
-.tax-toggle:hover {
-  border-color: #b0b0b0;
-  background-color: #f9fafb;
-}
-
+/* Fix toggle switch knob & text overlapping */
 .tax-toggle .form-check-input {
-  cursor: pointer;
-  width: 1.8rem !important;
-  height: 0.95rem !important;
+  width: 1.75rem !important;
+  height: 0.9rem !important;
   margin: 0 0.5rem 0 0 !important;
   float: none !important;
-  vertical-align: middle;
+  cursor: pointer !important;
 }
 
 .tax-toggle .form-check-label {
   font-size: 0.75rem !important;
   font-weight: 600 !important;
-  color: #222222;
-  cursor: pointer;
-  white-space: nowrap;
-  user-select: none;
+  color: #222222 !important;
+  white-space: nowrap !important;
   margin: 0 !important;
+  cursor: pointer !important;
 }
 
-/* Responsive adjustments for smaller screens */
+/* 3. Mobile / Low Responsiveness (< 992px) */
 @media (max-width: 991.98px) {
-  #filters-wrapper {
-    max-width: 100%;
-  }
-
   .filters-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.4rem !important;
   }
 
+  /* Moves tax button to bottom-right under categories */
   .tax-toggle-wrapper {
-    width: 100%;
-    justify-content: flex-end; /* Keeps toggle on the bottom-right on mobile/tablet */
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Force Signup and Login buttons to remain visible */
+  .navbar-auth {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+  }
+
+  .btn-red {
+    display: inline-block !important;
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.75rem !important;
   }
 }
