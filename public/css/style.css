@@ -1,125 +1,69 @@
 /* ========================================================= */
-/* NAVBAR & CATEGORY BREAKPOINT FIX                          */
+/* 978px+ BREAKPOINT FIX: EXPAND CATEGORIES TO FILL GAP      */
 /* ========================================================= */
 
-/* Base Container */
-.filters-container {
-  width: 100%;
-}
-
-/* Category Wrapper */
-#filters-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-#filters {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  align-items: center;
-  gap: 1.25rem;
-  margin: 0 0.5rem;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-#filters::-webkit-scrollbar {
-  display: none;
-}
-
-/* Compact Tax Toggle Switch */
-.tax-toggle-wrapper {
-  flex-shrink: 0;
-  display: flex;
-}
-
-.tax-toggle {
-  border: 1px solid #d1d5db !important;
-  border-radius: 2rem !important;
-  padding: 0.25rem 0.75rem !important;
-  height: 2.1rem !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background-color: #ffffff !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-  white-space: nowrap !important;
-  cursor: pointer !important;
-}
-
-.tax-toggle .form-check-input {
-  width: 1.75rem !important;
-  height: 0.9rem !important;
-  margin: 0 0.4rem 0 0 !important;
-  float: none !important;
-  cursor: pointer !important;
-}
-
-.tax-toggle .form-check-label {
-  font-size: 0.75rem !important;
-  font-weight: 600 !important;
-  color: #222222 !important;
-  white-space: nowrap !important;
-  margin: 0 !important;
-  cursor: pointer !important;
-}
-
-/* --------------------------------------------------------- */
-/* SCREEN SIZE >= 767px (AFTER 766px): SAME ROW ALIGNMENT    */
-/* --------------------------------------------------------- */
-@media (min-width: 767px) {
+@media (min-width: 978px) {
+  /* Enforce single inline row for categories + tax switch */
   .filters-container {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 1.25rem !important;
+    width: 100% !important;
+    gap: 1.5rem !important;
   }
 
+  /* Allow categories wrapper to take all available middle space */
   #filters-wrapper {
     flex: 1 1 auto !important;
     min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
+  /* Spread category items evenly across the row to eliminate empty gap */
+  #filters {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    justify-content: space-between !important; /* Distributes items across full width */
+    align-items: center !important;
+    gap: 1rem !important;
+    margin: 0 0.5rem !important;
+    overflow-x: auto !important;
+  }
+
+  /* Hide scroll arrows if all categories fit natively on wide display */
+  .filters-arrow {
+    display: flex !important;
+  }
+
+  /* Keep tax toggle anchored neatly on the right */
   .tax-toggle-wrapper {
-    margin-left: auto !important;
-    justify-content: flex-end !important;
+    flex-shrink: 0 !important;
+    margin-left: 0 !important;
   }
 }
 
-/* --------------------------------------------------------- */
-/* SCREEN SIZE <= 766px: MOBILE STACKED ALIGNMENT           */
-/* --------------------------------------------------------- */
+/* ========================================================= */
+/* BELOW 978px BREAKPOINT: MAINTAIN COMPACT SCROLLABLE ROW   */
+/* ========================================================= */
+
+@media (max-width: 977.98px) {
+  #filters {
+    justify-content: flex-start !important;
+    gap: 1.25rem !important;
+  }
+}
+
 @media (max-width: 766.98px) {
   .filters-container {
-    display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 0.4rem !important;
   }
 
-  #filters-wrapper {
-    width: 100% !important;
-  }
-
   .tax-toggle-wrapper {
     width: 100% !important;
-    justify-content: flex-end !important; /* Bottom-right under categories */
-  }
-
-  .navbar-auth {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
-  }
-
-  .btn-red {
-    display: inline-block !important;
-    padding: 0.3rem 0.6rem !important;
-    font-size: 0.75rem !important;
+    justify-content: flex-end !important; /* Bottom-right under categories on mobile */
   }
 }
