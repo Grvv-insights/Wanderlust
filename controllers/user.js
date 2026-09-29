@@ -33,9 +33,35 @@ module.exports.loginForm = (req, res) => {
   res.render("users/login.ejs");
 };
 //LOGIN
-module.exports.login = (req, res) => {
-  req.flash("success", "Welcome back to WanderLust!");
+// routes/user.js or controllers/users.js
+const Review = require("../models/review");
+const Listing = require("../models/listing");
 
+module.exports.login = async (req, res) => {
+  req.flash("success", "Welcome back to Wanderlust!");
+
+  // Handle pending review auto-submission if present
+  if (req.session.pendingReview) {
+    const { data, listingId } = req.session.pendingReview;
+    delete req.session.pendingReview; // Clean up session
+
+    try {
+      const listing = await Listing.findById(listingId);
+      const newReview = new Review(data);
+      newReview.author = req.user._id;
+
+      listing.reviews.push(newReview);
+      await newReview.save();
+      await listing.save();
+
+      req.flash("success", "Review posted automatically!");
+      return res.redirect(`/listings/${listingId}`);
+    } catch (err) {
+      console.error("Auto-review error:", err);
+    }
+  }
+
+  // Fallback to standard redirect
   let redirectUrl = res.locals.redirectUrl || "/listings";
   res.redirect(redirectUrl);
 };
