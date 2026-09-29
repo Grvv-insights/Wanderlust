@@ -1,199 +1,231 @@
+/* public/css/navbar.css */
+
 html,
 body {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .navbar {
-    width: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem 1rem;
 }
 
-.navbar > .container-fluid {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+.navbar-brand {
+  color: #ff385c;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
 }
 
-.navbar-collapse {
-    display: flex;
-    align-items: center;
-    flex: 1 1 auto;
-    min-width: 0;
+.navbar-brand:hover {
+  color: #e31c5f;
 }
 
-.navbar-nav {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
+/* Category Filters Container */
 #filters-wrapper {
-    display: flex;
-    align-items: center;
-    flex: 1 1 auto;
-    min-width: 0;
-    margin: 0 0.5rem;
-    position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0.5rem 0;
+  position: relative;
 }
 
 .filters-arrow {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    min-width: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 2;
-    flex-shrink: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
 .filters-arrow:hover {
-    background: #f5f5f5;
+  background: #f5f5f5;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 .filters-arrow.disabled {
-    opacity: 0.3;
-    cursor: default;
-    pointer-events: none;
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
 }
 
 #filters {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    align-items: center;
-    gap: 1.75rem;
-    margin: 0 0.5rem;
-    flex: 1 1 auto;
-    min-width: 0;
-    scroll-behavior: smooth;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0 0.5rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  scroll-behavior: smooth;
 
-    /* Hide scrollbar */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 #filters::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .filter {
-    text-align: center;
-    opacity: 0.7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    white-space: nowrap;
-    flex-shrink: 0;
-    text-decoration: none;
-    color: inherit;
+  text-align: center;
+  opacity: 0.7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
 }
 
 .filter i {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 
 .filter:hover {
-    opacity: 1;
-    cursor: pointer;
+  opacity: 1;
+  cursor: pointer;
 }
 
 .filter p {
-    font-size: 0.75rem;
-    margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  margin: 0.25rem 0 0;
 }
 
-.navbar-auth {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
-    white-space: nowrap;
-}
-
-.tax-info {
-    display: none;
-}
-
+/* Tax Toggle */
 .tax-toggle {
-    border: 1.5px solid #ddd;
-    border-radius: 2rem;
-    height: 2.75rem;
-    padding: 0 1.1rem;
-    margin-left: 1rem;
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #484848;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
+  border: 1.5px solid #ddd;
+  border-radius: 2rem;
+  height: 2.5rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #484848;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .tax-toggle:hover {
-    border-color: #222;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  border-color: #222;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .tax-toggle.active {
-    background-color: #222;
-    color: white;
-    border-color: #222;
+  background-color: #222;
+  color: white;
+  border-color: #222;
+}
+
+/* Auth Buttons */
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .add-listing-btn {
-    border: 1.5px solid #222;
-    border-radius: 2rem;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #222;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: all 0.2s ease;
+  border: 1.5px solid #222;
+  border-radius: 2rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #222;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  text-align: center;
 }
 
 .add-listing-btn:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
+  color: #000;
 }
 
 .btn-red {
-    background-color: #ff385c;
-    color: white;
-    border-radius: 2rem;
-    padding: 0.6rem 1.2rem;
-    font-weight: 600;
-    font-size: 0.9rem;
+  background-color: #ff385c;
+  color: white !important;
+  border-radius: 2rem;
+  padding: 0.4rem 0.9rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+  text-align: center;
 }
 
 .btn-red:hover {
-    background-color: #e31c5f;
-    color: white;
+  background-color: #e31c5f;
+  color: white !important;
 }
 
-/* Prevent buttons/links from forcing navbar wider */
-.navbar-auth .nav-link {
-    white-space: nowrap;
+.user-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  background-color: #f0f0f0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
 }
 
-/* Smaller desktop/tablet screens */
-@media (max-width: 1200px) {
-    #filters {
-        gap: 1.25rem;
-    }
-    .navbar-auth {
-        gap: 0.5rem;
-    }
-    .navbar-auth > .nav-link:first-child {
-        display: none;
-    }
+/* ========================================================= */
+/* Responsive Media Queries                                   */
+/* ========================================================= */
+
+@media (max-width: 991.98px) {
+  /* Stack elements inside mobile drawer menu cleanly */
+  .navbar-collapse {
+    padding: 1rem 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  #filters-wrapper {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .tax-toggle {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+  .navbar-auth {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .add-listing-btn,
+  .btn-red {
+    width: 100%;
+    display: block;
+  }
 }
