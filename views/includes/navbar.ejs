@@ -9,7 +9,7 @@
         <span class="fw-bold fs-5 brand-title">Wanderlust</span>
       </a>
 
-      <div class="navbar-auth d-flex align-items-center gap-2">
+      <div class="navbar-auth d-flex align-items-center gap-1 gap-sm-2">
         <a class="add-listing-btn" href="/listings/new">
           <span class="d-none d-sm-inline">Wanderlust your home</span>
           <span class="d-inline d-sm-none"><i class="fa-solid fa-plus"></i></span>
@@ -17,7 +17,7 @@
 
         <% if (!currUser) { %>
           <a class="btn btn-red btn-sm" href="/login">Login</a>
-          <a class="btn btn-red btn-sm d-none d-sm-inline-block" href="/signup">Signup</a>
+          <a class="btn btn-red btn-sm" href="/signup">Signup</a>
         <% } else { %>
           <span class="user-badge d-none d-md-inline-block">
             <i class="fa-solid fa-user me-1"></i><%= currUser.username %>
@@ -27,73 +27,76 @@
       </div>
     </div>
 
-    <!-- MIDDLE BAR: Always-Visible Horizontal Category Filters -->
-    <div class="nav-middle-bar w-100 px-2 py-2 border-bottom bg-white">
-      <div id="filters-wrapper" class="w-100">
-        <div class="filters-arrow disabled" id="filters-left">
-          <i class="fa-solid fa-chevron-left"></i>
+    <!-- BOTTOM SECTION: Filters Bar + GST Toggle -->
+    <div class="nav-filters-bar w-100 px-3 py-2 bg-white">
+      <div class="filters-container d-flex align-items-center justify-content-between">
+        
+        <!-- Category Filters Wrapper -->
+        <div id="filters-wrapper">
+          <div class="filters-arrow disabled" id="filters-left">
+            <i class="fa-solid fa-chevron-left"></i>
+          </div>
+
+          <div id="filters">
+            <a href="/listings?category=trending" class="filter">
+              <div><i class="fa-solid fa-fire"></i></div>
+              <p>Trending</p>
+            </a>
+            <a href="/listings?category=rooms" class="filter">
+              <div><i class="fa-solid fa-bed"></i></div>
+              <p>Rooms</p>
+            </a>
+            <a href="/listings?category=iconic-cities" class="filter">
+              <div><i class="fa-solid fa-mountain-city"></i></div>
+              <p>Iconic Cities</p>
+            </a>
+            <a href="/listings?category=mountains" class="filter">
+              <div><i class="fa-solid fa-mountain"></i></div>
+              <p>Mountains</p>
+            </a>
+            <a href="/listings?category=castles" class="filter">
+              <div><i class="fa-brands fa-fort-awesome"></i></div>
+              <p>Castles</p>
+            </a>
+            <a href="/listings?category=pools" class="filter">
+              <div><i class="fa-solid fa-person-swimming"></i></div>
+              <p>Pools</p>
+            </a>
+            <a href="/listings?category=camping" class="filter">
+              <div><i class="fa-solid fa-campground"></i></div>
+              <p>Camping</p>
+            </a>
+            <a href="/listings?category=farms" class="filter">
+              <div><i class="fa-solid fa-cow"></i></div>
+              <p>Farms</p>
+            </a>
+            <a href="/listings?category=arctic" class="filter">
+              <div><i class="fa-regular fa-snowflake"></i></div>
+              <p>Arctic</p>
+            </a>
+            <a href="/listings?category=domes" class="filter">
+              <div><i class="fa-solid fa-igloo"></i></div>
+              <p>Domes</p>
+            </a>
+            <a href="/listings?category=boats" class="filter">
+              <div><i class="fa-solid fa-ship"></i></div>
+              <p>Boats</p>
+            </a>
+          </div>
+
+          <div class="filters-arrow" id="filters-right">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
         </div>
 
-        <div id="filters">
-          <a href="/listings?category=trending" class="filter">
-            <div><i class="fa-solid fa-fire"></i></div>
-            <p>Trending</p>
-          </a>
-          <a href="/listings?category=rooms" class="filter">
-            <div><i class="fa-solid fa-bed"></i></div>
-            <p>Rooms</p>
-          </a>
-          <a href="/listings?category=iconic-cities" class="filter">
-            <div><i class="fa-solid fa-mountain-city"></i></div>
-            <p>Iconic Cities</p>
-          </a>
-          <a href="/listings?category=mountains" class="filter">
-            <div><i class="fa-solid fa-mountain"></i></div>
-            <p>Mountains</p>
-          </a>
-          <a href="/listings?category=castles" class="filter">
-            <div><i class="fa-brands fa-fort-awesome"></i></div>
-            <p>Castles</p>
-          </a>
-          <a href="/listings?category=pools" class="filter">
-            <div><i class="fa-solid fa-person-swimming"></i></div>
-            <p>Pools</p>
-          </a>
-          <a href="/listings?category=camping" class="filter">
-            <div><i class="fa-solid fa-campground"></i></div>
-            <p>Camping</p>
-          </a>
-          <a href="/listings?category=farms" class="filter">
-            <div><i class="fa-solid fa-cow"></i></div>
-            <p>Farms</p>
-          </a>
-          <a href="/listings?category=arctic" class="filter">
-            <div><i class="fa-regular fa-snowflake"></i></div>
-            <p>Arctic</p>
-          </a>
-          <a href="/listings?category=domes" class="filter">
-            <div><i class="fa-solid fa-igloo"></i></div>
-            <p>Domes</p>
-          </a>
-          <a href="/listings?category=boats" class="filter">
-            <div><i class="fa-solid fa-ship"></i></div>
-            <p>Boats</p>
-          </a>
+        <!-- GST Price Switch (Right Side in Desktop, Bottom Right in Mobile/Tablet) -->
+        <div class="tax-toggle-wrapper">
+          <div class="tax-toggle" id="taxToggle">
+            <input class="form-check-input" type="checkbox" role="switch" id="taxSwitch">
+            <label class="form-check-label" for="taxSwitch" id="taxToggleText">Display total price</label>
+          </div>
         </div>
 
-        <div class="filters-arrow" id="filters-right">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-      </div>
-    </div>
-
-    <!-- BOTTOM BAR: Compact GST Price Switcher -->
-    <div class="nav-bottom-bar w-100 py-2 px-3 d-flex justify-content-center bg-white">
-      <div class="tax-toggle" id="taxToggle">
-        <div class="form-check form-switch form-check-reverse m-0 d-flex align-items-center gap-2">
-          <input class="form-check-input" type="checkbox" role="switch" id="taxSwitch">
-          <label class="form-check-label" for="taxSwitch" id="taxToggleText">Display total price</label>
-        </div>
       </div>
     </div>
 
