@@ -1,5 +1,6 @@
 const User = require("../models/users.js");
-
+const Review = require("../models/review");
+const Listing = require("../models/listing");
 //SIGNUP FORM
 module.exports.signupForm = (req, res) => {
   res.render("users/signup.ejs");
@@ -32,22 +33,18 @@ module.exports.signup = async (req, res) => {
 module.exports.loginForm = (req, res) => {
   res.render("users/login.ejs");
 };
-//LOGIN
-// routes/user.js or controllers/users.js
-const Review = require("../models/review");
-const Listing = require("../models/listing");
 
+//LOGIN
 module.exports.login = async (req, res) => {
   req.flash("success", "Welcome back to Wanderlust!");
 
   // Handle pending review auto-submission if present
   if (req.session.pendingReview) {
-    const { data, listingId } = req.session.pendingReview;
-    delete req.session.pendingReview; // Clean up session
+    const listingId = redirectUrl.split("/").pop(); // URL se listing ID nikaलो
+    const listing = await Listing.findById(listingId);
 
     try {
-      const listing = await Listing.findById(listingId);
-      const newReview = new Review(data);
+      const newReview = new Review(req.session.pendingReview);
       newReview.author = req.user._id;
 
       listing.reviews.push(newReview);
@@ -59,6 +56,7 @@ module.exports.login = async (req, res) => {
     } catch (err) {
       console.error("Auto-review error:", err);
     }
+    delete req.session.pendingReview;
   }
 
   // Fallback to standard redirect
