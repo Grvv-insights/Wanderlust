@@ -1,6 +1,8 @@
 const User = require("../models/users.js");
 const Review = require("../models/review");
 const Listing = require("../models/listing");
+const { reviewSchema } = require("../schema.js");
+
 //SIGNUP FORM
 module.exports.signupForm = (req, res) => {
   res.render("users/signup.ejs");
@@ -35,32 +37,58 @@ module.exports.loginForm = (req, res) => {
 };
 
 //LOGIN
-module.exports.login = async (req, res) => {
-  req.flash("success", "Welcome back to Wanderlust!");
+const Listing = require("../models/listings.js");
+const Review = require("../models/reviews.js");
+const { reviewSchema } = require("../schema.js"); // Your Joi validation schema
 
-  // Handle pending review auto-submission if present
+module.exports.login = async (req, res) => {
+  req.flash("success", "Welcome back to WanderLust!");
+
+  let redirectUrl = res.locals.redirectUrl || "/listings";
+
+  // Handle Pending Review if user tried submitting while logged out
   if (req.session.pendingReview) {
-    const listingId = redirectUrl.split("/").pop(); // URL se listing ID nikaलो
-    const listing = await Listing.findById(listingId);
+    const { data, listingId } = req.session.pendingReview;
+    delete req.session.pendingReview; // Cleanup session immediately to prevent duplicate runs
 
     try {
-      const newReview = new Review(req.session.pendingReview);
+      // 1. Validate Review Data against Joi Schema
+      const { error } = reviewSchema.validate({ review: data });
+      if (error) {
+        throw new Error("Invalid review data format.");
+      }
+
+      // 2. Validate Listing ID presence
+      if (!listingId) {
+        throw new Error("Target listing ID not found.");
+      }
+
+      // 3. Fetch Listing
+      const listing = await Listing.findById(listingId);
+      if (!listing) {
+        throw new Error("Target listing does not exist.");
+      }
+
+      // 4. Save New Review
+      const newReview = new Review(data);
       newReview.author = req.user._id;
 
       listing.reviews.push(newReview);
       await newReview.save();
       await listing.save();
 
-      req.flash("success", "Review posted automatically!");
+      req.flash("success", "Your review has been automatically submitted!");
       return res.redirect(`/listings/${listingId}`);
     } catch (err) {
-      console.error("Auto-review error:", err);
+      console.error("Auto-review submission error:", err.message);
+      req.flash(
+        "error",
+        "Could not submit review automatically. Please try again.",
+      );
+      return res.redirect(redirectUrl);
     }
-    delete req.session.pendingReview;
   }
 
-  // Fallback to standard redirect
-  let redirectUrl = res.locals.redirectUrl || "/listings";
   res.redirect(redirectUrl);
 };
 

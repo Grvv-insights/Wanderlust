@@ -34,7 +34,12 @@ router.post(
   (req, res, next) => {
     if (!req.isAuthenticated()) {
       req.session.redirectUrl = `/listings/${req.params.id}`;
-      req.session.pendingReview=req.body.review;
+      if(req.body && req.body.review){
+        req.session.pendingReview={
+          data:req.body.review,
+          listingId:req.params.id
+        };
+      }
     }
     next();
   },
